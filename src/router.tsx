@@ -4,7 +4,12 @@ import { routeTree } from "./routeTree.gen";
 
 export const getRouter = () => {
   // One client per request: a module-level QueryClient leaks cached data between SSR requests.
-  const queryClient = new QueryClient();
+  // Defaults carried over from the original BrathaMatu frontend entry (src/main.tsx).
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: { retry: 1, refetchOnWindowFocus: false },
+    },
+  });
 
   const router = createRouter({
     routeTree,

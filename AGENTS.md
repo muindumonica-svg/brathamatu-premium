@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## BrathaMatu project rules
+- Routes are declared in `src/app/routes.ts` (virtual route config, wired in both `vite.config.ts` and `tsr.config.json`); every page is a flat child of the root so route IDs equal URL paths — pages rely on `useParams({ from: '<path>' })`.
+- Workspace route files set `ssr: false` because auth guards and pages read the session token from browser storage; only the public homepage at `/` is server-rendered for SEO.
+- Auth guards live in `src/app/routeGuards.ts`; the Laravel API contract (endpoints, envelopes, enums, permissions) in `src/lib/api` is the source of truth and must not change from the frontend.
+- Homepage code lives in `src/features/home`; its colours, radii and shadows come from semantic tokens in `src/styles.css`, while workspace pages keep the original `brand-*`/`ink-*` tokens.

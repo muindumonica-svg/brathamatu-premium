@@ -9,34 +9,982 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as indexRouteImport } from './routes/index'
+import { Route as appRouteImport } from './routes/app'
+import { Route as changeInitialPasswordRouteImport } from './routes/change-initial-password'
+import { Route as forgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as loginRouteImport } from './routes/login'
+import { Route as notificationsRouteImport } from './routes/notifications'
+import { Route as onboardingRouteImport } from './routes/onboarding'
+import { Route as platformRouteImport } from './routes/platform'
+import { Route as posRouteImport } from './routes/pos'
+import { Route as profileRouteImport } from './routes/profile'
+import { Route as registerRouteImport } from './routes/register'
+import { Route as settingsRouteImport } from './routes/settings'
+import { Route as supportRouteImport } from './routes/support'
+import { Route as verifyRouteImport } from './routes/verify'
+import { Route as businessCatalogueRouteImport } from './routes/business/catalogue'
+import { Route as businessIntegrationsRouteImport } from './routes/business/integrations'
+import { Route as businessInventoryRouteImport } from './routes/business/inventory'
+import { Route as businessLocationsRouteImport } from './routes/business/locations'
+import { Route as businessOnboardingRouteImport } from './routes/business/onboarding'
+import { Route as businessReportsRouteImport } from './routes/business/reports'
+import { Route as businessSchedulesRouteImport } from './routes/business/schedules'
+import { Route as businessStocktakingRouteImport } from './routes/business/stocktaking'
+import { Route as businessTeamRouteImport } from './routes/business/team'
+import { Route as invitationsAcceptRouteImport } from './routes/invitations/accept'
+import { Route as platformAuditRouteImport } from './routes/platform/audit'
+import { Route as platformCataloguePricingRouteImport } from './routes/platform/catalogue-pricing'
+import { Route as platformFinanceRouteImport } from './routes/platform/finance'
+import { Route as platformMarketingRouteImport } from './routes/platform/marketing'
+import { Route as platformOperationsRouteImport } from './routes/platform/operations'
+import { Route as platformReportsRouteImport } from './routes/platform/reports'
+import { Route as platformSopsRouteImport } from './routes/platform/sops'
+import { Route as platformStocktakePolicyRouteImport } from './routes/platform/stocktake-policy'
+import { Route as platformStocktakingJobsRouteImport } from './routes/platform/stocktaking-jobs'
+import { Route as platformSupportRouteImport } from './routes/platform/support'
+import { Route as platformTenantsRouteImport } from './routes/platform/tenants'
+import { Route as platformWorkforceRouteImport } from './routes/platform/workforce'
+import { Route as posBackOfficeRouteImport } from './routes/pos/back-office'
+import { Route as posShiftsRouteImport } from './routes/pos/shifts'
+import { Route as posStocktakeRouteImport } from './routes/pos/stocktake'
+import { Route as posTerminalsRouteImport } from './routes/pos/terminals'
+import { Route as workforceAssignmentsRouteImport } from './routes/workforce/assignments'
+import { Route as workforceEarningsRouteImport } from './routes/workforce/earnings'
+import { Route as workforceProfileRouteImport } from './routes/workforce/profile'
+import { Route as workforceRegisterRouteImport } from './routes/workforce/register'
+import { Route as businessSchedulesScheduleIdRouteImport } from './routes/business/schedules/$scheduleId'
+import { Route as businessStocktakingJobIdRouteImport } from './routes/business/stocktaking/$jobId'
+import { Route as businessStocktakingNewRouteImport } from './routes/business/stocktaking/new'
+import { Route as platformMarketingAnalyticsRouteImport } from './routes/platform/marketing/analytics'
+import { Route as platformMarketingAutomationRouteImport } from './routes/platform/marketing/automation'
+import { Route as platformMarketingBlogRouteImport } from './routes/platform/marketing/blog'
+import { Route as platformMarketingCampaignsRouteImport } from './routes/platform/marketing/campaigns'
+import { Route as platformMarketingContentRouteImport } from './routes/platform/marketing/content'
+import { Route as platformMarketingLeadsRouteImport } from './routes/platform/marketing/leads'
+import { Route as platformMarketingMediaRouteImport } from './routes/platform/marketing/media'
+import { Route as platformMarketingNavigationRouteImport } from './routes/platform/marketing/navigation'
+import { Route as platformMarketingPagesRouteImport } from './routes/platform/marketing/pages'
+import { Route as platformMarketingSeoRouteImport } from './routes/platform/marketing/seo'
+import { Route as platformMarketingSocialRouteImport } from './routes/platform/marketing/social'
+import { Route as platformStocktakingJobsJobIdRouteImport } from './routes/platform/stocktaking-jobs/$jobId'
+import { Route as platformTenantsTenantIdRouteImport } from './routes/platform/tenants/$tenantId'
+import { Route as platformWorkforceProfileIdRouteImport } from './routes/platform/workforce/$profileId'
+import { Route as businessCatalogueProductsProductIdRouteImport } from './routes/business/catalogue/products/$productId'
+import { Route as businessStocktakingJobIdEditRouteImport } from './routes/business/stocktaking/$jobId/edit'
+import { Route as businessStocktakingJobIdReviewRouteImport } from './routes/business/stocktaking/$jobId/review'
+import { Route as platformMarketingIntegrationsGoogleRouteImport } from './routes/platform/marketing/integrations/google'
+import { Route as platformMarketingIntegrationsMetaRouteImport } from './routes/platform/marketing/integrations/meta'
+import { Route as platformMarketingLeadsLeadIdRouteImport } from './routes/platform/marketing/leads/$leadId'
+import { Route as platformMarketingPagesPageIdRouteImport } from './routes/platform/marketing/pages/$pageId'
+import { Route as platformStocktakingJobsJobIdQaRouteImport } from './routes/platform/stocktaking-jobs/$jobId/qa'
+import { Route as platformTenantsTenantIdTeamRouteImport } from './routes/platform/tenants/$tenantId/team'
+import { Route as workforceAssignmentsAssignmentIdCountRouteImport } from './routes/workforce/assignments/$assignmentId/count'
+import { Route as workforceAssignmentsAssignmentIdOperationsRouteImport } from './routes/workforce/assignments/$assignmentId/operations'
 
-const IndexRoute = IndexRouteImport.update({
+const indexRoute = indexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const appRoute = appRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const changeInitialPasswordRoute = changeInitialPasswordRouteImport.update({
+  id: '/change-initial-password',
+  path: '/change-initial-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const forgotPasswordRoute = forgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const loginRoute = loginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const notificationsRoute = notificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const onboardingRoute = onboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformRoute = platformRouteImport.update({
+  id: '/platform',
+  path: '/platform',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const posRoute = posRouteImport.update({
+  id: '/pos',
+  path: '/pos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const profileRoute = profileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const registerRoute = registerRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const settingsRoute = settingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const supportRoute = supportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const verifyRoute = verifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessCatalogueRoute = businessCatalogueRouteImport.update({
+  id: '/business/catalogue',
+  path: '/business/catalogue',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessIntegrationsRoute = businessIntegrationsRouteImport.update({
+  id: '/business/integrations',
+  path: '/business/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessInventoryRoute = businessInventoryRouteImport.update({
+  id: '/business/inventory',
+  path: '/business/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessLocationsRoute = businessLocationsRouteImport.update({
+  id: '/business/locations',
+  path: '/business/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessOnboardingRoute = businessOnboardingRouteImport.update({
+  id: '/business/onboarding',
+  path: '/business/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessReportsRoute = businessReportsRouteImport.update({
+  id: '/business/reports',
+  path: '/business/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessSchedulesRoute = businessSchedulesRouteImport.update({
+  id: '/business/schedules',
+  path: '/business/schedules',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessStocktakingRoute = businessStocktakingRouteImport.update({
+  id: '/business/stocktaking',
+  path: '/business/stocktaking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessTeamRoute = businessTeamRouteImport.update({
+  id: '/business/team',
+  path: '/business/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const invitationsAcceptRoute = invitationsAcceptRouteImport.update({
+  id: '/invitations/accept',
+  path: '/invitations/accept',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformAuditRoute = platformAuditRouteImport.update({
+  id: '/platform/audit',
+  path: '/platform/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformCataloguePricingRoute =
+  platformCataloguePricingRouteImport.update({
+    id: '/platform/catalogue-pricing',
+    path: '/platform/catalogue-pricing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformFinanceRoute = platformFinanceRouteImport.update({
+  id: '/platform/finance',
+  path: '/platform/finance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformMarketingRoute = platformMarketingRouteImport.update({
+  id: '/platform/marketing',
+  path: '/platform/marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformOperationsRoute = platformOperationsRouteImport.update({
+  id: '/platform/operations',
+  path: '/platform/operations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformReportsRoute = platformReportsRouteImport.update({
+  id: '/platform/reports',
+  path: '/platform/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformSopsRoute = platformSopsRouteImport.update({
+  id: '/platform/sops',
+  path: '/platform/sops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformStocktakePolicyRoute = platformStocktakePolicyRouteImport.update({
+  id: '/platform/stocktake-policy',
+  path: '/platform/stocktake-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformStocktakingJobsRoute = platformStocktakingJobsRouteImport.update({
+  id: '/platform/stocktaking-jobs',
+  path: '/platform/stocktaking-jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformSupportRoute = platformSupportRouteImport.update({
+  id: '/platform/support',
+  path: '/platform/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformTenantsRoute = platformTenantsRouteImport.update({
+  id: '/platform/tenants',
+  path: '/platform/tenants',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformWorkforceRoute = platformWorkforceRouteImport.update({
+  id: '/platform/workforce',
+  path: '/platform/workforce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const posBackOfficeRoute = posBackOfficeRouteImport.update({
+  id: '/pos/back-office',
+  path: '/pos/back-office',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const posShiftsRoute = posShiftsRouteImport.update({
+  id: '/pos/shifts',
+  path: '/pos/shifts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const posStocktakeRoute = posStocktakeRouteImport.update({
+  id: '/pos/stocktake',
+  path: '/pos/stocktake',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const posTerminalsRoute = posTerminalsRouteImport.update({
+  id: '/pos/terminals',
+  path: '/pos/terminals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const workforceAssignmentsRoute = workforceAssignmentsRouteImport.update({
+  id: '/workforce/assignments',
+  path: '/workforce/assignments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const workforceEarningsRoute = workforceEarningsRouteImport.update({
+  id: '/workforce/earnings',
+  path: '/workforce/earnings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const workforceProfileRoute = workforceProfileRouteImport.update({
+  id: '/workforce/profile',
+  path: '/workforce/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const workforceRegisterRoute = workforceRegisterRouteImport.update({
+  id: '/workforce/register',
+  path: '/workforce/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const businessSchedulesScheduleIdRoute =
+  businessSchedulesScheduleIdRouteImport.update({
+    id: '/business/schedules/$scheduleId',
+    path: '/business/schedules/$scheduleId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const businessStocktakingJobIdRoute =
+  businessStocktakingJobIdRouteImport.update({
+    id: '/business/stocktaking/$jobId',
+    path: '/business/stocktaking/$jobId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const businessStocktakingNewRoute = businessStocktakingNewRouteImport.update({
+  id: '/business/stocktaking/new',
+  path: '/business/stocktaking/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformMarketingAnalyticsRoute =
+  platformMarketingAnalyticsRouteImport.update({
+    id: '/platform/marketing/analytics',
+    path: '/platform/marketing/analytics',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingAutomationRoute =
+  platformMarketingAutomationRouteImport.update({
+    id: '/platform/marketing/automation',
+    path: '/platform/marketing/automation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingBlogRoute = platformMarketingBlogRouteImport.update({
+  id: '/platform/marketing/blog',
+  path: '/platform/marketing/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformMarketingCampaignsRoute =
+  platformMarketingCampaignsRouteImport.update({
+    id: '/platform/marketing/campaigns',
+    path: '/platform/marketing/campaigns',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingContentRoute =
+  platformMarketingContentRouteImport.update({
+    id: '/platform/marketing/content',
+    path: '/platform/marketing/content',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingLeadsRoute = platformMarketingLeadsRouteImport.update({
+  id: '/platform/marketing/leads',
+  path: '/platform/marketing/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformMarketingMediaRoute = platformMarketingMediaRouteImport.update({
+  id: '/platform/marketing/media',
+  path: '/platform/marketing/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformMarketingNavigationRoute =
+  platformMarketingNavigationRouteImport.update({
+    id: '/platform/marketing/navigation',
+    path: '/platform/marketing/navigation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingPagesRoute = platformMarketingPagesRouteImport.update({
+  id: '/platform/marketing/pages',
+  path: '/platform/marketing/pages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformMarketingSeoRoute = platformMarketingSeoRouteImport.update({
+  id: '/platform/marketing/seo',
+  path: '/platform/marketing/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformMarketingSocialRoute = platformMarketingSocialRouteImport.update({
+  id: '/platform/marketing/social',
+  path: '/platform/marketing/social',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformStocktakingJobsJobIdRoute =
+  platformStocktakingJobsJobIdRouteImport.update({
+    id: '/platform/stocktaking-jobs/$jobId',
+    path: '/platform/stocktaking-jobs/$jobId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformTenantsTenantIdRoute = platformTenantsTenantIdRouteImport.update({
+  id: '/platform/tenants/$tenantId',
+  path: '/platform/tenants/$tenantId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const platformWorkforceProfileIdRoute =
+  platformWorkforceProfileIdRouteImport.update({
+    id: '/platform/workforce/$profileId',
+    path: '/platform/workforce/$profileId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const businessCatalogueProductsProductIdRoute =
+  businessCatalogueProductsProductIdRouteImport.update({
+    id: '/business/catalogue/products/$productId',
+    path: '/business/catalogue/products/$productId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const businessStocktakingJobIdEditRoute =
+  businessStocktakingJobIdEditRouteImport.update({
+    id: '/business/stocktaking/$jobId/edit',
+    path: '/business/stocktaking/$jobId/edit',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const businessStocktakingJobIdReviewRoute =
+  businessStocktakingJobIdReviewRouteImport.update({
+    id: '/business/stocktaking/$jobId/review',
+    path: '/business/stocktaking/$jobId/review',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingIntegrationsGoogleRoute =
+  platformMarketingIntegrationsGoogleRouteImport.update({
+    id: '/platform/marketing/integrations/google',
+    path: '/platform/marketing/integrations/google',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingIntegrationsMetaRoute =
+  platformMarketingIntegrationsMetaRouteImport.update({
+    id: '/platform/marketing/integrations/meta',
+    path: '/platform/marketing/integrations/meta',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingLeadsLeadIdRoute =
+  platformMarketingLeadsLeadIdRouteImport.update({
+    id: '/platform/marketing/leads/$leadId',
+    path: '/platform/marketing/leads/$leadId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformMarketingPagesPageIdRoute =
+  platformMarketingPagesPageIdRouteImport.update({
+    id: '/platform/marketing/pages/$pageId',
+    path: '/platform/marketing/pages/$pageId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformStocktakingJobsJobIdQaRoute =
+  platformStocktakingJobsJobIdQaRouteImport.update({
+    id: '/platform/stocktaking-jobs/$jobId/qa',
+    path: '/platform/stocktaking-jobs/$jobId/qa',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const platformTenantsTenantIdTeamRoute =
+  platformTenantsTenantIdTeamRouteImport.update({
+    id: '/platform/tenants/$tenantId/team',
+    path: '/platform/tenants/$tenantId/team',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const workforceAssignmentsAssignmentIdCountRoute =
+  workforceAssignmentsAssignmentIdCountRouteImport.update({
+    id: '/workforce/assignments/$assignmentId/count',
+    path: '/workforce/assignments/$assignmentId/count',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const workforceAssignmentsAssignmentIdOperationsRoute =
+  workforceAssignmentsAssignmentIdOperationsRouteImport.update({
+    id: '/workforce/assignments/$assignmentId/operations',
+    path: '/workforce/assignments/$assignmentId/operations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof indexRoute
+  '/app': typeof appRoute
+  '/change-initial-password': typeof changeInitialPasswordRoute
+  '/forgot-password': typeof forgotPasswordRoute
+  '/login': typeof loginRoute
+  '/notifications': typeof notificationsRoute
+  '/onboarding': typeof onboardingRoute
+  '/platform': typeof platformRoute
+  '/pos': typeof posRoute
+  '/profile': typeof profileRoute
+  '/register': typeof registerRoute
+  '/settings': typeof settingsRoute
+  '/support': typeof supportRoute
+  '/verify': typeof verifyRoute
+  '/business/catalogue': typeof businessCatalogueRoute
+  '/business/integrations': typeof businessIntegrationsRoute
+  '/business/inventory': typeof businessInventoryRoute
+  '/business/locations': typeof businessLocationsRoute
+  '/business/onboarding': typeof businessOnboardingRoute
+  '/business/reports': typeof businessReportsRoute
+  '/business/schedules': typeof businessSchedulesRoute
+  '/business/stocktaking': typeof businessStocktakingRoute
+  '/business/team': typeof businessTeamRoute
+  '/invitations/accept': typeof invitationsAcceptRoute
+  '/platform/audit': typeof platformAuditRoute
+  '/platform/catalogue-pricing': typeof platformCataloguePricingRoute
+  '/platform/finance': typeof platformFinanceRoute
+  '/platform/marketing': typeof platformMarketingRoute
+  '/platform/operations': typeof platformOperationsRoute
+  '/platform/reports': typeof platformReportsRoute
+  '/platform/sops': typeof platformSopsRoute
+  '/platform/stocktake-policy': typeof platformStocktakePolicyRoute
+  '/platform/stocktaking-jobs': typeof platformStocktakingJobsRoute
+  '/platform/support': typeof platformSupportRoute
+  '/platform/tenants': typeof platformTenantsRoute
+  '/platform/workforce': typeof platformWorkforceRoute
+  '/pos/back-office': typeof posBackOfficeRoute
+  '/pos/shifts': typeof posShiftsRoute
+  '/pos/stocktake': typeof posStocktakeRoute
+  '/pos/terminals': typeof posTerminalsRoute
+  '/workforce/assignments': typeof workforceAssignmentsRoute
+  '/workforce/earnings': typeof workforceEarningsRoute
+  '/workforce/profile': typeof workforceProfileRoute
+  '/workforce/register': typeof workforceRegisterRoute
+  '/business/schedules/$scheduleId': typeof businessSchedulesScheduleIdRoute
+  '/business/stocktaking/$jobId': typeof businessStocktakingJobIdRoute
+  '/business/stocktaking/new': typeof businessStocktakingNewRoute
+  '/platform/marketing/analytics': typeof platformMarketingAnalyticsRoute
+  '/platform/marketing/automation': typeof platformMarketingAutomationRoute
+  '/platform/marketing/blog': typeof platformMarketingBlogRoute
+  '/platform/marketing/campaigns': typeof platformMarketingCampaignsRoute
+  '/platform/marketing/content': typeof platformMarketingContentRoute
+  '/platform/marketing/leads': typeof platformMarketingLeadsRoute
+  '/platform/marketing/media': typeof platformMarketingMediaRoute
+  '/platform/marketing/navigation': typeof platformMarketingNavigationRoute
+  '/platform/marketing/pages': typeof platformMarketingPagesRoute
+  '/platform/marketing/seo': typeof platformMarketingSeoRoute
+  '/platform/marketing/social': typeof platformMarketingSocialRoute
+  '/platform/stocktaking-jobs/$jobId': typeof platformStocktakingJobsJobIdRoute
+  '/platform/tenants/$tenantId': typeof platformTenantsTenantIdRoute
+  '/platform/workforce/$profileId': typeof platformWorkforceProfileIdRoute
+  '/business/catalogue/products/$productId': typeof businessCatalogueProductsProductIdRoute
+  '/business/stocktaking/$jobId/edit': typeof businessStocktakingJobIdEditRoute
+  '/business/stocktaking/$jobId/review': typeof businessStocktakingJobIdReviewRoute
+  '/platform/marketing/integrations/google': typeof platformMarketingIntegrationsGoogleRoute
+  '/platform/marketing/integrations/meta': typeof platformMarketingIntegrationsMetaRoute
+  '/platform/marketing/leads/$leadId': typeof platformMarketingLeadsLeadIdRoute
+  '/platform/marketing/pages/$pageId': typeof platformMarketingPagesPageIdRoute
+  '/platform/stocktaking-jobs/$jobId/qa': typeof platformStocktakingJobsJobIdQaRoute
+  '/platform/tenants/$tenantId/team': typeof platformTenantsTenantIdTeamRoute
+  '/workforce/assignments/$assignmentId/count': typeof workforceAssignmentsAssignmentIdCountRoute
+  '/workforce/assignments/$assignmentId/operations': typeof workforceAssignmentsAssignmentIdOperationsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof indexRoute
+  '/app': typeof appRoute
+  '/change-initial-password': typeof changeInitialPasswordRoute
+  '/forgot-password': typeof forgotPasswordRoute
+  '/login': typeof loginRoute
+  '/notifications': typeof notificationsRoute
+  '/onboarding': typeof onboardingRoute
+  '/platform': typeof platformRoute
+  '/pos': typeof posRoute
+  '/profile': typeof profileRoute
+  '/register': typeof registerRoute
+  '/settings': typeof settingsRoute
+  '/support': typeof supportRoute
+  '/verify': typeof verifyRoute
+  '/business/catalogue': typeof businessCatalogueRoute
+  '/business/integrations': typeof businessIntegrationsRoute
+  '/business/inventory': typeof businessInventoryRoute
+  '/business/locations': typeof businessLocationsRoute
+  '/business/onboarding': typeof businessOnboardingRoute
+  '/business/reports': typeof businessReportsRoute
+  '/business/schedules': typeof businessSchedulesRoute
+  '/business/stocktaking': typeof businessStocktakingRoute
+  '/business/team': typeof businessTeamRoute
+  '/invitations/accept': typeof invitationsAcceptRoute
+  '/platform/audit': typeof platformAuditRoute
+  '/platform/catalogue-pricing': typeof platformCataloguePricingRoute
+  '/platform/finance': typeof platformFinanceRoute
+  '/platform/marketing': typeof platformMarketingRoute
+  '/platform/operations': typeof platformOperationsRoute
+  '/platform/reports': typeof platformReportsRoute
+  '/platform/sops': typeof platformSopsRoute
+  '/platform/stocktake-policy': typeof platformStocktakePolicyRoute
+  '/platform/stocktaking-jobs': typeof platformStocktakingJobsRoute
+  '/platform/support': typeof platformSupportRoute
+  '/platform/tenants': typeof platformTenantsRoute
+  '/platform/workforce': typeof platformWorkforceRoute
+  '/pos/back-office': typeof posBackOfficeRoute
+  '/pos/shifts': typeof posShiftsRoute
+  '/pos/stocktake': typeof posStocktakeRoute
+  '/pos/terminals': typeof posTerminalsRoute
+  '/workforce/assignments': typeof workforceAssignmentsRoute
+  '/workforce/earnings': typeof workforceEarningsRoute
+  '/workforce/profile': typeof workforceProfileRoute
+  '/workforce/register': typeof workforceRegisterRoute
+  '/business/schedules/$scheduleId': typeof businessSchedulesScheduleIdRoute
+  '/business/stocktaking/$jobId': typeof businessStocktakingJobIdRoute
+  '/business/stocktaking/new': typeof businessStocktakingNewRoute
+  '/platform/marketing/analytics': typeof platformMarketingAnalyticsRoute
+  '/platform/marketing/automation': typeof platformMarketingAutomationRoute
+  '/platform/marketing/blog': typeof platformMarketingBlogRoute
+  '/platform/marketing/campaigns': typeof platformMarketingCampaignsRoute
+  '/platform/marketing/content': typeof platformMarketingContentRoute
+  '/platform/marketing/leads': typeof platformMarketingLeadsRoute
+  '/platform/marketing/media': typeof platformMarketingMediaRoute
+  '/platform/marketing/navigation': typeof platformMarketingNavigationRoute
+  '/platform/marketing/pages': typeof platformMarketingPagesRoute
+  '/platform/marketing/seo': typeof platformMarketingSeoRoute
+  '/platform/marketing/social': typeof platformMarketingSocialRoute
+  '/platform/stocktaking-jobs/$jobId': typeof platformStocktakingJobsJobIdRoute
+  '/platform/tenants/$tenantId': typeof platformTenantsTenantIdRoute
+  '/platform/workforce/$profileId': typeof platformWorkforceProfileIdRoute
+  '/business/catalogue/products/$productId': typeof businessCatalogueProductsProductIdRoute
+  '/business/stocktaking/$jobId/edit': typeof businessStocktakingJobIdEditRoute
+  '/business/stocktaking/$jobId/review': typeof businessStocktakingJobIdReviewRoute
+  '/platform/marketing/integrations/google': typeof platformMarketingIntegrationsGoogleRoute
+  '/platform/marketing/integrations/meta': typeof platformMarketingIntegrationsMetaRoute
+  '/platform/marketing/leads/$leadId': typeof platformMarketingLeadsLeadIdRoute
+  '/platform/marketing/pages/$pageId': typeof platformMarketingPagesPageIdRoute
+  '/platform/stocktaking-jobs/$jobId/qa': typeof platformStocktakingJobsJobIdQaRoute
+  '/platform/tenants/$tenantId/team': typeof platformTenantsTenantIdTeamRoute
+  '/workforce/assignments/$assignmentId/count': typeof workforceAssignmentsAssignmentIdCountRoute
+  '/workforce/assignments/$assignmentId/operations': typeof workforceAssignmentsAssignmentIdOperationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/': typeof indexRoute
+  '/app': typeof appRoute
+  '/change-initial-password': typeof changeInitialPasswordRoute
+  '/forgot-password': typeof forgotPasswordRoute
+  '/login': typeof loginRoute
+  '/notifications': typeof notificationsRoute
+  '/onboarding': typeof onboardingRoute
+  '/platform': typeof platformRoute
+  '/pos': typeof posRoute
+  '/profile': typeof profileRoute
+  '/register': typeof registerRoute
+  '/settings': typeof settingsRoute
+  '/support': typeof supportRoute
+  '/verify': typeof verifyRoute
+  '/business/catalogue': typeof businessCatalogueRoute
+  '/business/integrations': typeof businessIntegrationsRoute
+  '/business/inventory': typeof businessInventoryRoute
+  '/business/locations': typeof businessLocationsRoute
+  '/business/onboarding': typeof businessOnboardingRoute
+  '/business/reports': typeof businessReportsRoute
+  '/business/schedules': typeof businessSchedulesRoute
+  '/business/stocktaking': typeof businessStocktakingRoute
+  '/business/team': typeof businessTeamRoute
+  '/invitations/accept': typeof invitationsAcceptRoute
+  '/platform/audit': typeof platformAuditRoute
+  '/platform/catalogue-pricing': typeof platformCataloguePricingRoute
+  '/platform/finance': typeof platformFinanceRoute
+  '/platform/marketing': typeof platformMarketingRoute
+  '/platform/operations': typeof platformOperationsRoute
+  '/platform/reports': typeof platformReportsRoute
+  '/platform/sops': typeof platformSopsRoute
+  '/platform/stocktake-policy': typeof platformStocktakePolicyRoute
+  '/platform/stocktaking-jobs': typeof platformStocktakingJobsRoute
+  '/platform/support': typeof platformSupportRoute
+  '/platform/tenants': typeof platformTenantsRoute
+  '/platform/workforce': typeof platformWorkforceRoute
+  '/pos/back-office': typeof posBackOfficeRoute
+  '/pos/shifts': typeof posShiftsRoute
+  '/pos/stocktake': typeof posStocktakeRoute
+  '/pos/terminals': typeof posTerminalsRoute
+  '/workforce/assignments': typeof workforceAssignmentsRoute
+  '/workforce/earnings': typeof workforceEarningsRoute
+  '/workforce/profile': typeof workforceProfileRoute
+  '/workforce/register': typeof workforceRegisterRoute
+  '/business/schedules/$scheduleId': typeof businessSchedulesScheduleIdRoute
+  '/business/stocktaking/$jobId': typeof businessStocktakingJobIdRoute
+  '/business/stocktaking/new': typeof businessStocktakingNewRoute
+  '/platform/marketing/analytics': typeof platformMarketingAnalyticsRoute
+  '/platform/marketing/automation': typeof platformMarketingAutomationRoute
+  '/platform/marketing/blog': typeof platformMarketingBlogRoute
+  '/platform/marketing/campaigns': typeof platformMarketingCampaignsRoute
+  '/platform/marketing/content': typeof platformMarketingContentRoute
+  '/platform/marketing/leads': typeof platformMarketingLeadsRoute
+  '/platform/marketing/media': typeof platformMarketingMediaRoute
+  '/platform/marketing/navigation': typeof platformMarketingNavigationRoute
+  '/platform/marketing/pages': typeof platformMarketingPagesRoute
+  '/platform/marketing/seo': typeof platformMarketingSeoRoute
+  '/platform/marketing/social': typeof platformMarketingSocialRoute
+  '/platform/stocktaking-jobs/$jobId': typeof platformStocktakingJobsJobIdRoute
+  '/platform/tenants/$tenantId': typeof platformTenantsTenantIdRoute
+  '/platform/workforce/$profileId': typeof platformWorkforceProfileIdRoute
+  '/business/catalogue/products/$productId': typeof businessCatalogueProductsProductIdRoute
+  '/business/stocktaking/$jobId/edit': typeof businessStocktakingJobIdEditRoute
+  '/business/stocktaking/$jobId/review': typeof businessStocktakingJobIdReviewRoute
+  '/platform/marketing/integrations/google': typeof platformMarketingIntegrationsGoogleRoute
+  '/platform/marketing/integrations/meta': typeof platformMarketingIntegrationsMetaRoute
+  '/platform/marketing/leads/$leadId': typeof platformMarketingLeadsLeadIdRoute
+  '/platform/marketing/pages/$pageId': typeof platformMarketingPagesPageIdRoute
+  '/platform/stocktaking-jobs/$jobId/qa': typeof platformStocktakingJobsJobIdQaRoute
+  '/platform/tenants/$tenantId/team': typeof platformTenantsTenantIdTeamRoute
+  '/workforce/assignments/$assignmentId/count': typeof workforceAssignmentsAssignmentIdCountRoute
+  '/workforce/assignments/$assignmentId/operations': typeof workforceAssignmentsAssignmentIdOperationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/change-initial-password'
+    | '/forgot-password'
+    | '/login'
+    | '/notifications'
+    | '/onboarding'
+    | '/platform'
+    | '/pos'
+    | '/profile'
+    | '/register'
+    | '/settings'
+    | '/support'
+    | '/verify'
+    | '/business/catalogue'
+    | '/business/integrations'
+    | '/business/inventory'
+    | '/business/locations'
+    | '/business/onboarding'
+    | '/business/reports'
+    | '/business/schedules'
+    | '/business/stocktaking'
+    | '/business/team'
+    | '/invitations/accept'
+    | '/platform/audit'
+    | '/platform/catalogue-pricing'
+    | '/platform/finance'
+    | '/platform/marketing'
+    | '/platform/operations'
+    | '/platform/reports'
+    | '/platform/sops'
+    | '/platform/stocktake-policy'
+    | '/platform/stocktaking-jobs'
+    | '/platform/support'
+    | '/platform/tenants'
+    | '/platform/workforce'
+    | '/pos/back-office'
+    | '/pos/shifts'
+    | '/pos/stocktake'
+    | '/pos/terminals'
+    | '/workforce/assignments'
+    | '/workforce/earnings'
+    | '/workforce/profile'
+    | '/workforce/register'
+    | '/business/schedules/$scheduleId'
+    | '/business/stocktaking/$jobId'
+    | '/business/stocktaking/new'
+    | '/platform/marketing/analytics'
+    | '/platform/marketing/automation'
+    | '/platform/marketing/blog'
+    | '/platform/marketing/campaigns'
+    | '/platform/marketing/content'
+    | '/platform/marketing/leads'
+    | '/platform/marketing/media'
+    | '/platform/marketing/navigation'
+    | '/platform/marketing/pages'
+    | '/platform/marketing/seo'
+    | '/platform/marketing/social'
+    | '/platform/stocktaking-jobs/$jobId'
+    | '/platform/tenants/$tenantId'
+    | '/platform/workforce/$profileId'
+    | '/business/catalogue/products/$productId'
+    | '/business/stocktaking/$jobId/edit'
+    | '/business/stocktaking/$jobId/review'
+    | '/platform/marketing/integrations/google'
+    | '/platform/marketing/integrations/meta'
+    | '/platform/marketing/leads/$leadId'
+    | '/platform/marketing/pages/$pageId'
+    | '/platform/stocktaking-jobs/$jobId/qa'
+    | '/platform/tenants/$tenantId/team'
+    | '/workforce/assignments/$assignmentId/count'
+    | '/workforce/assignments/$assignmentId/operations'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app'
+    | '/change-initial-password'
+    | '/forgot-password'
+    | '/login'
+    | '/notifications'
+    | '/onboarding'
+    | '/platform'
+    | '/pos'
+    | '/profile'
+    | '/register'
+    | '/settings'
+    | '/support'
+    | '/verify'
+    | '/business/catalogue'
+    | '/business/integrations'
+    | '/business/inventory'
+    | '/business/locations'
+    | '/business/onboarding'
+    | '/business/reports'
+    | '/business/schedules'
+    | '/business/stocktaking'
+    | '/business/team'
+    | '/invitations/accept'
+    | '/platform/audit'
+    | '/platform/catalogue-pricing'
+    | '/platform/finance'
+    | '/platform/marketing'
+    | '/platform/operations'
+    | '/platform/reports'
+    | '/platform/sops'
+    | '/platform/stocktake-policy'
+    | '/platform/stocktaking-jobs'
+    | '/platform/support'
+    | '/platform/tenants'
+    | '/platform/workforce'
+    | '/pos/back-office'
+    | '/pos/shifts'
+    | '/pos/stocktake'
+    | '/pos/terminals'
+    | '/workforce/assignments'
+    | '/workforce/earnings'
+    | '/workforce/profile'
+    | '/workforce/register'
+    | '/business/schedules/$scheduleId'
+    | '/business/stocktaking/$jobId'
+    | '/business/stocktaking/new'
+    | '/platform/marketing/analytics'
+    | '/platform/marketing/automation'
+    | '/platform/marketing/blog'
+    | '/platform/marketing/campaigns'
+    | '/platform/marketing/content'
+    | '/platform/marketing/leads'
+    | '/platform/marketing/media'
+    | '/platform/marketing/navigation'
+    | '/platform/marketing/pages'
+    | '/platform/marketing/seo'
+    | '/platform/marketing/social'
+    | '/platform/stocktaking-jobs/$jobId'
+    | '/platform/tenants/$tenantId'
+    | '/platform/workforce/$profileId'
+    | '/business/catalogue/products/$productId'
+    | '/business/stocktaking/$jobId/edit'
+    | '/business/stocktaking/$jobId/review'
+    | '/platform/marketing/integrations/google'
+    | '/platform/marketing/integrations/meta'
+    | '/platform/marketing/leads/$leadId'
+    | '/platform/marketing/pages/$pageId'
+    | '/platform/stocktaking-jobs/$jobId/qa'
+    | '/platform/tenants/$tenantId/team'
+    | '/workforce/assignments/$assignmentId/count'
+    | '/workforce/assignments/$assignmentId/operations'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/change-initial-password'
+    | '/forgot-password'
+    | '/login'
+    | '/notifications'
+    | '/onboarding'
+    | '/platform'
+    | '/pos'
+    | '/profile'
+    | '/register'
+    | '/settings'
+    | '/support'
+    | '/verify'
+    | '/business/catalogue'
+    | '/business/integrations'
+    | '/business/inventory'
+    | '/business/locations'
+    | '/business/onboarding'
+    | '/business/reports'
+    | '/business/schedules'
+    | '/business/stocktaking'
+    | '/business/team'
+    | '/invitations/accept'
+    | '/platform/audit'
+    | '/platform/catalogue-pricing'
+    | '/platform/finance'
+    | '/platform/marketing'
+    | '/platform/operations'
+    | '/platform/reports'
+    | '/platform/sops'
+    | '/platform/stocktake-policy'
+    | '/platform/stocktaking-jobs'
+    | '/platform/support'
+    | '/platform/tenants'
+    | '/platform/workforce'
+    | '/pos/back-office'
+    | '/pos/shifts'
+    | '/pos/stocktake'
+    | '/pos/terminals'
+    | '/workforce/assignments'
+    | '/workforce/earnings'
+    | '/workforce/profile'
+    | '/workforce/register'
+    | '/business/schedules/$scheduleId'
+    | '/business/stocktaking/$jobId'
+    | '/business/stocktaking/new'
+    | '/platform/marketing/analytics'
+    | '/platform/marketing/automation'
+    | '/platform/marketing/blog'
+    | '/platform/marketing/campaigns'
+    | '/platform/marketing/content'
+    | '/platform/marketing/leads'
+    | '/platform/marketing/media'
+    | '/platform/marketing/navigation'
+    | '/platform/marketing/pages'
+    | '/platform/marketing/seo'
+    | '/platform/marketing/social'
+    | '/platform/stocktaking-jobs/$jobId'
+    | '/platform/tenants/$tenantId'
+    | '/platform/workforce/$profileId'
+    | '/business/catalogue/products/$productId'
+    | '/business/stocktaking/$jobId/edit'
+    | '/business/stocktaking/$jobId/review'
+    | '/platform/marketing/integrations/google'
+    | '/platform/marketing/integrations/meta'
+    | '/platform/marketing/leads/$leadId'
+    | '/platform/marketing/pages/$pageId'
+    | '/platform/stocktaking-jobs/$jobId/qa'
+    | '/platform/tenants/$tenantId/team'
+    | '/workforce/assignments/$assignmentId/count'
+    | '/workforce/assignments/$assignmentId/operations'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  indexRoute: typeof indexRoute
+  appRoute: typeof appRoute
+  changeInitialPasswordRoute: typeof changeInitialPasswordRoute
+  forgotPasswordRoute: typeof forgotPasswordRoute
+  loginRoute: typeof loginRoute
+  notificationsRoute: typeof notificationsRoute
+  onboardingRoute: typeof onboardingRoute
+  platformRoute: typeof platformRoute
+  posRoute: typeof posRoute
+  profileRoute: typeof profileRoute
+  registerRoute: typeof registerRoute
+  settingsRoute: typeof settingsRoute
+  supportRoute: typeof supportRoute
+  verifyRoute: typeof verifyRoute
+  businessCatalogueRoute: typeof businessCatalogueRoute
+  businessIntegrationsRoute: typeof businessIntegrationsRoute
+  businessInventoryRoute: typeof businessInventoryRoute
+  businessLocationsRoute: typeof businessLocationsRoute
+  businessOnboardingRoute: typeof businessOnboardingRoute
+  businessReportsRoute: typeof businessReportsRoute
+  businessSchedulesRoute: typeof businessSchedulesRoute
+  businessStocktakingRoute: typeof businessStocktakingRoute
+  businessTeamRoute: typeof businessTeamRoute
+  invitationsAcceptRoute: typeof invitationsAcceptRoute
+  platformAuditRoute: typeof platformAuditRoute
+  platformCataloguePricingRoute: typeof platformCataloguePricingRoute
+  platformFinanceRoute: typeof platformFinanceRoute
+  platformMarketingRoute: typeof platformMarketingRoute
+  platformOperationsRoute: typeof platformOperationsRoute
+  platformReportsRoute: typeof platformReportsRoute
+  platformSopsRoute: typeof platformSopsRoute
+  platformStocktakePolicyRoute: typeof platformStocktakePolicyRoute
+  platformStocktakingJobsRoute: typeof platformStocktakingJobsRoute
+  platformSupportRoute: typeof platformSupportRoute
+  platformTenantsRoute: typeof platformTenantsRoute
+  platformWorkforceRoute: typeof platformWorkforceRoute
+  posBackOfficeRoute: typeof posBackOfficeRoute
+  posShiftsRoute: typeof posShiftsRoute
+  posStocktakeRoute: typeof posStocktakeRoute
+  posTerminalsRoute: typeof posTerminalsRoute
+  workforceAssignmentsRoute: typeof workforceAssignmentsRoute
+  workforceEarningsRoute: typeof workforceEarningsRoute
+  workforceProfileRoute: typeof workforceProfileRoute
+  workforceRegisterRoute: typeof workforceRegisterRoute
+  businessSchedulesScheduleIdRoute: typeof businessSchedulesScheduleIdRoute
+  businessStocktakingJobIdRoute: typeof businessStocktakingJobIdRoute
+  businessStocktakingNewRoute: typeof businessStocktakingNewRoute
+  platformMarketingAnalyticsRoute: typeof platformMarketingAnalyticsRoute
+  platformMarketingAutomationRoute: typeof platformMarketingAutomationRoute
+  platformMarketingBlogRoute: typeof platformMarketingBlogRoute
+  platformMarketingCampaignsRoute: typeof platformMarketingCampaignsRoute
+  platformMarketingContentRoute: typeof platformMarketingContentRoute
+  platformMarketingLeadsRoute: typeof platformMarketingLeadsRoute
+  platformMarketingMediaRoute: typeof platformMarketingMediaRoute
+  platformMarketingNavigationRoute: typeof platformMarketingNavigationRoute
+  platformMarketingPagesRoute: typeof platformMarketingPagesRoute
+  platformMarketingSeoRoute: typeof platformMarketingSeoRoute
+  platformMarketingSocialRoute: typeof platformMarketingSocialRoute
+  platformStocktakingJobsJobIdRoute: typeof platformStocktakingJobsJobIdRoute
+  platformTenantsTenantIdRoute: typeof platformTenantsTenantIdRoute
+  platformWorkforceProfileIdRoute: typeof platformWorkforceProfileIdRoute
+  businessCatalogueProductsProductIdRoute: typeof businessCatalogueProductsProductIdRoute
+  businessStocktakingJobIdEditRoute: typeof businessStocktakingJobIdEditRoute
+  businessStocktakingJobIdReviewRoute: typeof businessStocktakingJobIdReviewRoute
+  platformMarketingIntegrationsGoogleRoute: typeof platformMarketingIntegrationsGoogleRoute
+  platformMarketingIntegrationsMetaRoute: typeof platformMarketingIntegrationsMetaRoute
+  platformMarketingLeadsLeadIdRoute: typeof platformMarketingLeadsLeadIdRoute
+  platformMarketingPagesPageIdRoute: typeof platformMarketingPagesPageIdRoute
+  platformStocktakingJobsJobIdQaRoute: typeof platformStocktakingJobsJobIdQaRoute
+  platformTenantsTenantIdTeamRoute: typeof platformTenantsTenantIdTeamRoute
+  workforceAssignmentsAssignmentIdCountRoute: typeof workforceAssignmentsAssignmentIdCountRoute
+  workforceAssignmentsAssignmentIdOperationsRoute: typeof workforceAssignmentsAssignmentIdOperationsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -45,14 +993,587 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof indexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof appRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/change-initial-password': {
+      id: '/change-initial-password'
+      path: '/change-initial-password'
+      fullPath: '/change-initial-password'
+      preLoaderRoute: typeof changeInitialPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof forgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof loginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof notificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof onboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform': {
+      id: '/platform'
+      path: '/platform'
+      fullPath: '/platform'
+      preLoaderRoute: typeof platformRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pos': {
+      id: '/pos'
+      path: '/pos'
+      fullPath: '/pos'
+      preLoaderRoute: typeof posRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof profileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof registerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof settingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof supportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify': {
+      id: '/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof verifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/catalogue': {
+      id: '/business/catalogue'
+      path: '/business/catalogue'
+      fullPath: '/business/catalogue'
+      preLoaderRoute: typeof businessCatalogueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/integrations': {
+      id: '/business/integrations'
+      path: '/business/integrations'
+      fullPath: '/business/integrations'
+      preLoaderRoute: typeof businessIntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/inventory': {
+      id: '/business/inventory'
+      path: '/business/inventory'
+      fullPath: '/business/inventory'
+      preLoaderRoute: typeof businessInventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/locations': {
+      id: '/business/locations'
+      path: '/business/locations'
+      fullPath: '/business/locations'
+      preLoaderRoute: typeof businessLocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/onboarding': {
+      id: '/business/onboarding'
+      path: '/business/onboarding'
+      fullPath: '/business/onboarding'
+      preLoaderRoute: typeof businessOnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/reports': {
+      id: '/business/reports'
+      path: '/business/reports'
+      fullPath: '/business/reports'
+      preLoaderRoute: typeof businessReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/schedules': {
+      id: '/business/schedules'
+      path: '/business/schedules'
+      fullPath: '/business/schedules'
+      preLoaderRoute: typeof businessSchedulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/stocktaking': {
+      id: '/business/stocktaking'
+      path: '/business/stocktaking'
+      fullPath: '/business/stocktaking'
+      preLoaderRoute: typeof businessStocktakingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/team': {
+      id: '/business/team'
+      path: '/business/team'
+      fullPath: '/business/team'
+      preLoaderRoute: typeof businessTeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/invitations/accept': {
+      id: '/invitations/accept'
+      path: '/invitations/accept'
+      fullPath: '/invitations/accept'
+      preLoaderRoute: typeof invitationsAcceptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/audit': {
+      id: '/platform/audit'
+      path: '/platform/audit'
+      fullPath: '/platform/audit'
+      preLoaderRoute: typeof platformAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/catalogue-pricing': {
+      id: '/platform/catalogue-pricing'
+      path: '/platform/catalogue-pricing'
+      fullPath: '/platform/catalogue-pricing'
+      preLoaderRoute: typeof platformCataloguePricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/finance': {
+      id: '/platform/finance'
+      path: '/platform/finance'
+      fullPath: '/platform/finance'
+      preLoaderRoute: typeof platformFinanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing': {
+      id: '/platform/marketing'
+      path: '/platform/marketing'
+      fullPath: '/platform/marketing'
+      preLoaderRoute: typeof platformMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/operations': {
+      id: '/platform/operations'
+      path: '/platform/operations'
+      fullPath: '/platform/operations'
+      preLoaderRoute: typeof platformOperationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/reports': {
+      id: '/platform/reports'
+      path: '/platform/reports'
+      fullPath: '/platform/reports'
+      preLoaderRoute: typeof platformReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/sops': {
+      id: '/platform/sops'
+      path: '/platform/sops'
+      fullPath: '/platform/sops'
+      preLoaderRoute: typeof platformSopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/stocktake-policy': {
+      id: '/platform/stocktake-policy'
+      path: '/platform/stocktake-policy'
+      fullPath: '/platform/stocktake-policy'
+      preLoaderRoute: typeof platformStocktakePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/stocktaking-jobs': {
+      id: '/platform/stocktaking-jobs'
+      path: '/platform/stocktaking-jobs'
+      fullPath: '/platform/stocktaking-jobs'
+      preLoaderRoute: typeof platformStocktakingJobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/support': {
+      id: '/platform/support'
+      path: '/platform/support'
+      fullPath: '/platform/support'
+      preLoaderRoute: typeof platformSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/tenants': {
+      id: '/platform/tenants'
+      path: '/platform/tenants'
+      fullPath: '/platform/tenants'
+      preLoaderRoute: typeof platformTenantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/workforce': {
+      id: '/platform/workforce'
+      path: '/platform/workforce'
+      fullPath: '/platform/workforce'
+      preLoaderRoute: typeof platformWorkforceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pos/back-office': {
+      id: '/pos/back-office'
+      path: '/pos/back-office'
+      fullPath: '/pos/back-office'
+      preLoaderRoute: typeof posBackOfficeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pos/shifts': {
+      id: '/pos/shifts'
+      path: '/pos/shifts'
+      fullPath: '/pos/shifts'
+      preLoaderRoute: typeof posShiftsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pos/stocktake': {
+      id: '/pos/stocktake'
+      path: '/pos/stocktake'
+      fullPath: '/pos/stocktake'
+      preLoaderRoute: typeof posStocktakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pos/terminals': {
+      id: '/pos/terminals'
+      path: '/pos/terminals'
+      fullPath: '/pos/terminals'
+      preLoaderRoute: typeof posTerminalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workforce/assignments': {
+      id: '/workforce/assignments'
+      path: '/workforce/assignments'
+      fullPath: '/workforce/assignments'
+      preLoaderRoute: typeof workforceAssignmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workforce/earnings': {
+      id: '/workforce/earnings'
+      path: '/workforce/earnings'
+      fullPath: '/workforce/earnings'
+      preLoaderRoute: typeof workforceEarningsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workforce/profile': {
+      id: '/workforce/profile'
+      path: '/workforce/profile'
+      fullPath: '/workforce/profile'
+      preLoaderRoute: typeof workforceProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workforce/register': {
+      id: '/workforce/register'
+      path: '/workforce/register'
+      fullPath: '/workforce/register'
+      preLoaderRoute: typeof workforceRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/schedules/$scheduleId': {
+      id: '/business/schedules/$scheduleId'
+      path: '/business/schedules/$scheduleId'
+      fullPath: '/business/schedules/$scheduleId'
+      preLoaderRoute: typeof businessSchedulesScheduleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/stocktaking/$jobId': {
+      id: '/business/stocktaking/$jobId'
+      path: '/business/stocktaking/$jobId'
+      fullPath: '/business/stocktaking/$jobId'
+      preLoaderRoute: typeof businessStocktakingJobIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/stocktaking/new': {
+      id: '/business/stocktaking/new'
+      path: '/business/stocktaking/new'
+      fullPath: '/business/stocktaking/new'
+      preLoaderRoute: typeof businessStocktakingNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/analytics': {
+      id: '/platform/marketing/analytics'
+      path: '/platform/marketing/analytics'
+      fullPath: '/platform/marketing/analytics'
+      preLoaderRoute: typeof platformMarketingAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/automation': {
+      id: '/platform/marketing/automation'
+      path: '/platform/marketing/automation'
+      fullPath: '/platform/marketing/automation'
+      preLoaderRoute: typeof platformMarketingAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/blog': {
+      id: '/platform/marketing/blog'
+      path: '/platform/marketing/blog'
+      fullPath: '/platform/marketing/blog'
+      preLoaderRoute: typeof platformMarketingBlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/campaigns': {
+      id: '/platform/marketing/campaigns'
+      path: '/platform/marketing/campaigns'
+      fullPath: '/platform/marketing/campaigns'
+      preLoaderRoute: typeof platformMarketingCampaignsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/content': {
+      id: '/platform/marketing/content'
+      path: '/platform/marketing/content'
+      fullPath: '/platform/marketing/content'
+      preLoaderRoute: typeof platformMarketingContentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/leads': {
+      id: '/platform/marketing/leads'
+      path: '/platform/marketing/leads'
+      fullPath: '/platform/marketing/leads'
+      preLoaderRoute: typeof platformMarketingLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/media': {
+      id: '/platform/marketing/media'
+      path: '/platform/marketing/media'
+      fullPath: '/platform/marketing/media'
+      preLoaderRoute: typeof platformMarketingMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/navigation': {
+      id: '/platform/marketing/navigation'
+      path: '/platform/marketing/navigation'
+      fullPath: '/platform/marketing/navigation'
+      preLoaderRoute: typeof platformMarketingNavigationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/pages': {
+      id: '/platform/marketing/pages'
+      path: '/platform/marketing/pages'
+      fullPath: '/platform/marketing/pages'
+      preLoaderRoute: typeof platformMarketingPagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/seo': {
+      id: '/platform/marketing/seo'
+      path: '/platform/marketing/seo'
+      fullPath: '/platform/marketing/seo'
+      preLoaderRoute: typeof platformMarketingSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/social': {
+      id: '/platform/marketing/social'
+      path: '/platform/marketing/social'
+      fullPath: '/platform/marketing/social'
+      preLoaderRoute: typeof platformMarketingSocialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/stocktaking-jobs/$jobId': {
+      id: '/platform/stocktaking-jobs/$jobId'
+      path: '/platform/stocktaking-jobs/$jobId'
+      fullPath: '/platform/stocktaking-jobs/$jobId'
+      preLoaderRoute: typeof platformStocktakingJobsJobIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/tenants/$tenantId': {
+      id: '/platform/tenants/$tenantId'
+      path: '/platform/tenants/$tenantId'
+      fullPath: '/platform/tenants/$tenantId'
+      preLoaderRoute: typeof platformTenantsTenantIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/workforce/$profileId': {
+      id: '/platform/workforce/$profileId'
+      path: '/platform/workforce/$profileId'
+      fullPath: '/platform/workforce/$profileId'
+      preLoaderRoute: typeof platformWorkforceProfileIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/catalogue/products/$productId': {
+      id: '/business/catalogue/products/$productId'
+      path: '/business/catalogue/products/$productId'
+      fullPath: '/business/catalogue/products/$productId'
+      preLoaderRoute: typeof businessCatalogueProductsProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/stocktaking/$jobId/edit': {
+      id: '/business/stocktaking/$jobId/edit'
+      path: '/business/stocktaking/$jobId/edit'
+      fullPath: '/business/stocktaking/$jobId/edit'
+      preLoaderRoute: typeof businessStocktakingJobIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business/stocktaking/$jobId/review': {
+      id: '/business/stocktaking/$jobId/review'
+      path: '/business/stocktaking/$jobId/review'
+      fullPath: '/business/stocktaking/$jobId/review'
+      preLoaderRoute: typeof businessStocktakingJobIdReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/integrations/google': {
+      id: '/platform/marketing/integrations/google'
+      path: '/platform/marketing/integrations/google'
+      fullPath: '/platform/marketing/integrations/google'
+      preLoaderRoute: typeof platformMarketingIntegrationsGoogleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/integrations/meta': {
+      id: '/platform/marketing/integrations/meta'
+      path: '/platform/marketing/integrations/meta'
+      fullPath: '/platform/marketing/integrations/meta'
+      preLoaderRoute: typeof platformMarketingIntegrationsMetaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/leads/$leadId': {
+      id: '/platform/marketing/leads/$leadId'
+      path: '/platform/marketing/leads/$leadId'
+      fullPath: '/platform/marketing/leads/$leadId'
+      preLoaderRoute: typeof platformMarketingLeadsLeadIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/marketing/pages/$pageId': {
+      id: '/platform/marketing/pages/$pageId'
+      path: '/platform/marketing/pages/$pageId'
+      fullPath: '/platform/marketing/pages/$pageId'
+      preLoaderRoute: typeof platformMarketingPagesPageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/stocktaking-jobs/$jobId/qa': {
+      id: '/platform/stocktaking-jobs/$jobId/qa'
+      path: '/platform/stocktaking-jobs/$jobId/qa'
+      fullPath: '/platform/stocktaking-jobs/$jobId/qa'
+      preLoaderRoute: typeof platformStocktakingJobsJobIdQaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/tenants/$tenantId/team': {
+      id: '/platform/tenants/$tenantId/team'
+      path: '/platform/tenants/$tenantId/team'
+      fullPath: '/platform/tenants/$tenantId/team'
+      preLoaderRoute: typeof platformTenantsTenantIdTeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workforce/assignments/$assignmentId/count': {
+      id: '/workforce/assignments/$assignmentId/count'
+      path: '/workforce/assignments/$assignmentId/count'
+      fullPath: '/workforce/assignments/$assignmentId/count'
+      preLoaderRoute: typeof workforceAssignmentsAssignmentIdCountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workforce/assignments/$assignmentId/operations': {
+      id: '/workforce/assignments/$assignmentId/operations'
+      path: '/workforce/assignments/$assignmentId/operations'
+      fullPath: '/workforce/assignments/$assignmentId/operations'
+      preLoaderRoute: typeof workforceAssignmentsAssignmentIdOperationsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  indexRoute: indexRoute,
+  appRoute: appRoute,
+  changeInitialPasswordRoute: changeInitialPasswordRoute,
+  forgotPasswordRoute: forgotPasswordRoute,
+  loginRoute: loginRoute,
+  notificationsRoute: notificationsRoute,
+  onboardingRoute: onboardingRoute,
+  platformRoute: platformRoute,
+  posRoute: posRoute,
+  profileRoute: profileRoute,
+  registerRoute: registerRoute,
+  settingsRoute: settingsRoute,
+  supportRoute: supportRoute,
+  verifyRoute: verifyRoute,
+  businessCatalogueRoute: businessCatalogueRoute,
+  businessIntegrationsRoute: businessIntegrationsRoute,
+  businessInventoryRoute: businessInventoryRoute,
+  businessLocationsRoute: businessLocationsRoute,
+  businessOnboardingRoute: businessOnboardingRoute,
+  businessReportsRoute: businessReportsRoute,
+  businessSchedulesRoute: businessSchedulesRoute,
+  businessStocktakingRoute: businessStocktakingRoute,
+  businessTeamRoute: businessTeamRoute,
+  invitationsAcceptRoute: invitationsAcceptRoute,
+  platformAuditRoute: platformAuditRoute,
+  platformCataloguePricingRoute: platformCataloguePricingRoute,
+  platformFinanceRoute: platformFinanceRoute,
+  platformMarketingRoute: platformMarketingRoute,
+  platformOperationsRoute: platformOperationsRoute,
+  platformReportsRoute: platformReportsRoute,
+  platformSopsRoute: platformSopsRoute,
+  platformStocktakePolicyRoute: platformStocktakePolicyRoute,
+  platformStocktakingJobsRoute: platformStocktakingJobsRoute,
+  platformSupportRoute: platformSupportRoute,
+  platformTenantsRoute: platformTenantsRoute,
+  platformWorkforceRoute: platformWorkforceRoute,
+  posBackOfficeRoute: posBackOfficeRoute,
+  posShiftsRoute: posShiftsRoute,
+  posStocktakeRoute: posStocktakeRoute,
+  posTerminalsRoute: posTerminalsRoute,
+  workforceAssignmentsRoute: workforceAssignmentsRoute,
+  workforceEarningsRoute: workforceEarningsRoute,
+  workforceProfileRoute: workforceProfileRoute,
+  workforceRegisterRoute: workforceRegisterRoute,
+  businessSchedulesScheduleIdRoute: businessSchedulesScheduleIdRoute,
+  businessStocktakingJobIdRoute: businessStocktakingJobIdRoute,
+  businessStocktakingNewRoute: businessStocktakingNewRoute,
+  platformMarketingAnalyticsRoute: platformMarketingAnalyticsRoute,
+  platformMarketingAutomationRoute: platformMarketingAutomationRoute,
+  platformMarketingBlogRoute: platformMarketingBlogRoute,
+  platformMarketingCampaignsRoute: platformMarketingCampaignsRoute,
+  platformMarketingContentRoute: platformMarketingContentRoute,
+  platformMarketingLeadsRoute: platformMarketingLeadsRoute,
+  platformMarketingMediaRoute: platformMarketingMediaRoute,
+  platformMarketingNavigationRoute: platformMarketingNavigationRoute,
+  platformMarketingPagesRoute: platformMarketingPagesRoute,
+  platformMarketingSeoRoute: platformMarketingSeoRoute,
+  platformMarketingSocialRoute: platformMarketingSocialRoute,
+  platformStocktakingJobsJobIdRoute: platformStocktakingJobsJobIdRoute,
+  platformTenantsTenantIdRoute: platformTenantsTenantIdRoute,
+  platformWorkforceProfileIdRoute: platformWorkforceProfileIdRoute,
+  businessCatalogueProductsProductIdRoute:
+    businessCatalogueProductsProductIdRoute,
+  businessStocktakingJobIdEditRoute: businessStocktakingJobIdEditRoute,
+  businessStocktakingJobIdReviewRoute: businessStocktakingJobIdReviewRoute,
+  platformMarketingIntegrationsGoogleRoute:
+    platformMarketingIntegrationsGoogleRoute,
+  platformMarketingIntegrationsMetaRoute:
+    platformMarketingIntegrationsMetaRoute,
+  platformMarketingLeadsLeadIdRoute: platformMarketingLeadsLeadIdRoute,
+  platformMarketingPagesPageIdRoute: platformMarketingPagesPageIdRoute,
+  platformStocktakingJobsJobIdQaRoute: platformStocktakingJobsJobIdQaRoute,
+  platformTenantsTenantIdTeamRoute: platformTenantsTenantIdTeamRoute,
+  workforceAssignmentsAssignmentIdCountRoute:
+    workforceAssignmentsAssignmentIdCountRoute,
+  workforceAssignmentsAssignmentIdOperationsRoute:
+    workforceAssignmentsAssignmentIdOperationsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

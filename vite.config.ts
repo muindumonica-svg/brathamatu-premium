@@ -14,5 +14,15 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // The BrathaMatu route table lives in src/app/routes.ts (flat, route IDs === URL paths).
+    router: { virtualRouteConfig: "./src/app/routes.ts" },
+  },
+  vite: {
+    server: {
+      // Local development against the Laravel API, as in the original frontend.
+      proxy: {
+        "/api": { target: "http://127.0.0.1:8000", changeOrigin: true },
+      },
+    },
   },
 });

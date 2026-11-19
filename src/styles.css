@@ -70,6 +70,30 @@
   --color-night-foreground: var(--night-foreground);
   --color-night-muted: var(--night-muted);
   --color-night-line: var(--night-line);
+  --color-ws-bg: var(--ws-bg);
+  --color-ws-sunken: var(--ws-sunken);
+  --color-ws-surface: var(--ws-surface);
+  --color-ws-raised: var(--ws-raised);
+  --color-ws-line: var(--ws-line);
+  --color-ws-line-strong: var(--ws-line-strong);
+  --color-ws-text: var(--ws-text);
+  --color-ws-muted: var(--ws-muted);
+  --color-ws-faint: var(--ws-faint);
+  --color-ws-gold: var(--ws-gold);
+  --color-ws-gold-deep: var(--ws-gold-deep);
+  --color-ws-gold-ink: var(--ws-gold-ink);
+  --color-ws-gold-soft: var(--ws-gold-soft);
+  --color-ws-success: var(--ws-success);
+  --color-ws-success-soft: var(--ws-success-soft);
+  --color-ws-warning: var(--ws-warning);
+  --color-ws-warning-soft: var(--ws-warning-soft);
+  --color-ws-danger: var(--ws-danger);
+  --color-ws-danger-soft: var(--ws-danger-soft);
+  --color-ws-info: var(--ws-info);
+  --color-ws-info-soft: var(--ws-info-soft);
+  --shadow-ws-card: var(--ws-shadow-card);
+  --shadow-ws-pop: var(--ws-shadow-pop);
+  --shadow-ws-glow: var(--ws-shadow-glow);
   --shadow-soft: var(--elevation-soft);
   --shadow-card: var(--elevation-card);
   --shadow-float: var(--elevation-float);
@@ -112,6 +136,129 @@
   --elevation-soft: 0 1px 2px oklch(0.2 0.02 168 / 0.05), 0 2px 8px -2px oklch(0.2 0.02 168 / 0.06);
   --elevation-card: 0 1px 2px oklch(0.2 0.02 168 / 0.04), 0 12px 32px -12px oklch(0.2 0.02 168 / 0.16);
   --elevation-float: 0 2px 4px oklch(0.2 0.02 168 / 0.06), 0 32px 64px -24px oklch(0.2 0.02 168 / 0.32);
+
+  /* Workspace (dashboards, forms, POS): near-black surfaces with warm gold accents */
+  --ws-bg: oklch(0.145 0.004 286);
+  --ws-sunken: oklch(0.17 0.004 286);
+  --ws-surface: oklch(0.195 0.004 286);
+  --ws-raised: oklch(0.235 0.005 286);
+  --ws-line: oklch(1 0 0 / 0.075);
+  --ws-line-strong: oklch(1 0 0 / 0.14);
+  --ws-text: oklch(0.97 0.003 286);
+  --ws-muted: oklch(0.7 0.008 286);
+  --ws-faint: oklch(0.52 0.008 286);
+  --ws-gold: oklch(0.82 0.14 76);
+  --ws-gold-deep: oklch(0.68 0.15 60);
+  --ws-gold-ink: oklch(0.2 0.03 70);
+  --ws-gold-soft: oklch(0.82 0.14 76 / 0.13);
+  --ws-success: oklch(0.8 0.15 152);
+  --ws-success-soft: oklch(0.8 0.15 152 / 0.12);
+  --ws-warning: oklch(0.83 0.14 85);
+  --ws-warning-soft: oklch(0.83 0.14 85 / 0.13);
+  --ws-danger: oklch(0.72 0.18 25);
+  --ws-danger-soft: oklch(0.72 0.18 25 / 0.13);
+  --ws-info: oklch(0.78 0.1 235);
+  --ws-info-soft: oklch(0.78 0.1 235 / 0.13);
+  --ws-shadow-card: inset 0 1px 0 oklch(1 0 0 / 0.045), 0 1px 2px oklch(0 0 0 / 0.45), 0 18px 40px -24px oklch(0 0 0 / 0.8);
+  --ws-shadow-pop: inset 0 1px 0 oklch(1 0 0 / 0.06), 0 2px 6px oklch(0 0 0 / 0.5), 0 28px 60px -20px oklch(0 0 0 / 0.85);
+  --ws-shadow-glow: 0 0 0 1px oklch(0.82 0.14 76 / 0.35), 0 10px 40px -10px oklch(0.82 0.14 76 / 0.45);
+}
+
+/*
+ * Workspace scope. Existing workspace pages are written with the original light palette
+ * (bg-white, text-gray-900, brand-*, red-50 ...). Inside .ws those palette variables are
+ * remapped to the dark gold theme so every module adopts it without touching page logic.
+ */
+.ws {
+  color-scheme: dark;
+  background-color: var(--ws-bg);
+  color: var(--ws-text);
+  --color-white: oklch(0.195 0.004 286);
+  --color-gray-50: oklch(0.17 0.004 286);
+  --color-gray-100: oklch(0.235 0.005 286);
+  --color-gray-200: oklch(0.275 0.005 286);
+  --color-gray-300: oklch(0.33 0.006 286);
+  --color-gray-400: oklch(0.48 0.007 286);
+  --color-gray-500: oklch(0.66 0.008 286);
+  --color-gray-600: oklch(0.74 0.007 286);
+  --color-gray-700: oklch(0.83 0.005 286);
+  --color-gray-800: oklch(0.9 0.004 286);
+  --color-gray-900: oklch(0.97 0.003 286);
+  --color-gray-950: oklch(0.985 0.002 286);
+  --color-ink-900: oklch(0.145 0.004 286);
+  --color-ink-700: oklch(0.8 0.005 286);
+  --color-ink-500: oklch(0.66 0.008 286);
+  --color-brand-50: oklch(0.82 0.14 76 / 0.1);
+  --color-brand-100: oklch(0.82 0.14 76 / 0.16);
+  --color-brand-200: oklch(0.82 0.14 76 / 0.3);
+  --color-brand-300: oklch(0.6 0.12 70);
+  --color-brand-400: oklch(0.74 0.14 72);
+  --color-brand-500: oklch(0.8 0.14 74);
+  --color-brand-600: oklch(0.78 0.15 72);
+  --color-brand-700: oklch(0.82 0.14 76);
+  --color-brand-800: oklch(0.87 0.12 80);
+  --color-brand-900: oklch(0.9 0.1 82);
+  --color-brand-950: oklch(0.94 0.06 85);
+  --color-red-50: oklch(0.72 0.18 25 / 0.1);
+  --color-red-100: oklch(0.72 0.18 25 / 0.16);
+  --color-red-200: oklch(0.72 0.18 25 / 0.3);
+  --color-red-300: oklch(0.55 0.15 25);
+  --color-red-400: oklch(0.66 0.17 25);
+  --color-red-500: oklch(0.7 0.18 25);
+  --color-red-600: oklch(0.72 0.18 25);
+  --color-red-700: oklch(0.78 0.15 25);
+  --color-red-800: oklch(0.84 0.11 25);
+  --color-red-900: oklch(0.9 0.07 25);
+  --color-amber-50: oklch(0.83 0.14 85 / 0.1);
+  --color-amber-100: oklch(0.83 0.14 85 / 0.16);
+  --color-amber-200: oklch(0.83 0.14 85 / 0.3);
+  --color-amber-300: oklch(0.62 0.12 80);
+  --color-amber-400: oklch(0.76 0.14 80);
+  --color-amber-500: oklch(0.8 0.15 80);
+  --color-amber-600: oklch(0.8 0.14 82);
+  --color-amber-700: oklch(0.84 0.13 85);
+  --color-amber-800: oklch(0.88 0.1 88);
+  --color-amber-900: oklch(0.92 0.07 90);
+  --color-blue-50: oklch(0.78 0.1 235 / 0.1);
+  --color-blue-100: oklch(0.78 0.1 235 / 0.16);
+  --color-blue-200: oklch(0.78 0.1 235 / 0.3);
+  --color-blue-300: oklch(0.58 0.1 240);
+  --color-blue-400: oklch(0.7 0.11 240);
+  --color-blue-500: oklch(0.72 0.12 240);
+  --color-blue-600: oklch(0.76 0.11 238);
+  --color-blue-700: oklch(0.8 0.1 236);
+  --color-blue-800: oklch(0.86 0.08 235);
+  --color-blue-900: oklch(0.9 0.05 235);
+  --color-green-50: oklch(0.8 0.15 152 / 0.1);
+  --color-green-100: oklch(0.8 0.15 152 / 0.16);
+  --color-green-200: oklch(0.8 0.15 152 / 0.3);
+  --color-green-300: oklch(0.6 0.12 152);
+  --color-green-400: oklch(0.72 0.14 152);
+  --color-green-500: oklch(0.76 0.15 152);
+  --color-green-600: oklch(0.78 0.15 152);
+  --color-green-700: oklch(0.82 0.14 152);
+  --color-green-800: oklch(0.87 0.11 152);
+  --color-green-900: oklch(0.9 0.07 152);
+}
+
+.ws ::selection {
+  background: oklch(0.82 0.14 76 / 0.35);
+}
+
+.ws input::placeholder,
+.ws textarea::placeholder {
+  color: var(--ws-faint);
+}
+
+.ws input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+.ws select,
+.ws textarea {
+  background-color: var(--ws-sunken);
+}
+
+.ws input[type="checkbox"],
+.ws input[type="radio"] {
+  accent-color: var(--ws-gold);
 }
 
 /* Workspace defaults carried over from the original stylesheet. */
@@ -215,8 +362,43 @@
   }
 }
 
+@utility ws-card {
+  background:
+    linear-gradient(180deg, oklch(1 0 0 / 0.025), transparent 40%),
+    var(--ws-surface);
+  border: 1px solid var(--ws-line);
+  border-radius: 1.1rem;
+  box-shadow: var(--ws-shadow-card);
+}
+
+@utility ws-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(1 0 0 / 0.12) transparent;
+}
+
+@utility skeleton {
+  background: linear-gradient(90deg, oklch(1 0 0 / 0.04), oklch(1 0 0 / 0.09), oklch(1 0 0 / 0.04));
+  background-size: 200% 100%;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
 @utility scan {
   @media (prefers-reduced-motion: no-preference) {
     animation: scan-line 2.8s ease-in-out infinite;
   }
+}
+
+body:has(.ws) {
+  background-color: var(--ws-bg);
 }

@@ -15,20 +15,23 @@ export function Button({
   disabled,
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'secondary' | 'danger'
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost'
   loading?: boolean
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:cursor-not-allowed disabled:opacity-60'
+    'inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ws-gold active:translate-y-px disabled:cursor-not-allowed disabled:opacity-55'
   const variants = {
-    primary: 'bg-brand-700 text-white hover:bg-brand-800',
-    secondary: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
+    primary:
+      'bg-ws-gold text-ws-gold-ink shadow-[inset_0_1px_0_oklch(1_0_0/0.35),0_6px_20px_-8px_oklch(0.82_0.14_76/0.6)] hover:brightness-105',
+    secondary: 'border border-ws-line-strong bg-ws-raised/60 text-ws-text hover:border-ws-gold/40 hover:bg-ws-raised',
+    danger: 'bg-ws-danger text-ws-gold-ink hover:brightness-110',
+    ghost: 'text-ws-muted hover:bg-ws-raised hover:text-ws-text',
   }
   return (
     <button
       className={`${base} ${variants[variant]} ${className}`}
       disabled={disabled || loading}
+      aria-busy={loading || undefined}
       {...props}
     >
       {loading && <Spinner className="h-4 w-4" />}
@@ -71,11 +74,11 @@ export function CollapsibleForm({ children, label = 'Show form' }: { children: R
       ref={detailsRef}
       open={open}
       onToggle={(event) => setOpen(event.currentTarget.open)}
-      className="rounded-lg border border-gray-200 bg-white p-3"
+      className="rounded-2xl border border-ws-line bg-ws-surface p-3 shadow-ws-card open:p-5"
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium text-brand-700">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-1 text-sm font-medium text-ws-gold">
         <span>{submittedSuccessfully ? 'Submitted successfully · ' : ''}{open ? 'Hide form' : label}</span>
-        <span aria-hidden>{open ? '−' : '+'}</span>
+        <span aria-hidden className="flex h-6 w-6 items-center justify-center rounded-full bg-ws-gold-soft text-ws-gold">{open ? '−' : '+'}</span>
       </summary>
       <div className="mt-4">{children}</div>
     </details>
@@ -90,6 +93,9 @@ export function Spinner({ className = 'h-5 w-5' }: { className?: string }) {
     </svg>
   )
 }
+
+const controlClass =
+  'block w-full rounded-xl border bg-ws-sunken px-3.5 py-2.5 text-sm text-ws-text shadow-[inset_0_1px_2px_oklch(0_0_0/0.35)] transition-colors placeholder:text-ws-faint hover:border-ws-line-strong focus:border-ws-gold/60 focus:outline-none focus:ring-2 focus:ring-ws-gold/25 disabled:opacity-60'
 
 export function Field({
   label,
@@ -107,24 +113,22 @@ export function Field({
 }) {
   const inputId = id ?? props.name
   return (
-    <div className="space-y-1">
-      <label htmlFor={inputId} className="block text-sm font-medium text-gray-700">
+    <div className="space-y-1.5">
+      <label htmlFor={inputId} className="block text-[13px] font-medium text-ws-muted">
         {label}
       </label>
       {children ?? (
         <input
           id={inputId}
           aria-invalid={error ? true : undefined}
-          aria-describedby={error ? `${inputId}-error` : undefined}
-          className={`block w-full rounded-lg border px-3 py-2 text-sm shadow-sm focus:outline-2 focus:outline-brand-600 ${
-            error ? 'border-red-500' : 'border-gray-300'
-          }`}
+          aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
+          className={`${controlClass} ${error ? 'border-ws-danger/70' : 'border-ws-line-strong'}`}
           {...props}
         />
       )}
-      {hint && !error && <p className="text-xs text-gray-500">{hint}</p>}
+      {hint && !error && <p id={`${inputId}-hint`} className="text-xs text-ws-faint">{hint}</p>}
       {error && (
-        <p id={`${inputId}-error`} role="alert" className="text-xs text-red-600">
+        <p id={`${inputId}-error`} role="alert" className="text-xs text-ws-danger">
           {error}
         </p>
       )}
@@ -147,24 +151,24 @@ export function Select({
 }) {
   const selectId = id ?? props.name
   return (
-    <div className="space-y-1">
-      <label htmlFor={selectId} className="block text-sm font-medium text-gray-700">
+    <div className="space-y-1.5">
+      <label htmlFor={selectId} className="block text-[13px] font-medium text-ws-muted">
         {label}
       </label>
       <select
         id={selectId}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${selectId}-error` : undefined}
-        className={`block w-full rounded-lg border bg-white px-3 py-2 text-sm shadow-sm focus:outline-2 focus:outline-brand-600 ${
-          error ? 'border-red-500' : 'border-gray-300'
+        className={`${controlClass} appearance-none bg-[url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23a1a1aa' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")] bg-[length:12px] bg-[right_0.9rem_center] bg-no-repeat pr-9 ${
+          error ? 'border-ws-danger/70' : 'border-ws-line-strong'
         }`}
         {...props}
       >
         {children}
       </select>
-      {hint && !error && <p className="text-xs text-gray-500">{hint}</p>}
+      {hint && !error && <p className="text-xs text-ws-faint">{hint}</p>}
       {error && (
-        <p id={`${selectId}-error`} role="alert" className="text-xs text-red-600">
+        <p id={`${selectId}-error`} role="alert" className="text-xs text-ws-danger">
           {error}
         </p>
       )}
@@ -176,38 +180,99 @@ export function PageHeader({
   title,
   description,
   actions,
+  eyebrow,
 }: {
   title: string
   description?: string
   actions?: ReactNode
+  eyebrow?: string
 }) {
   return (
-    <div className="flex flex-wrap items-start justify-between gap-4">
-      <div>
-        <h1 className="text-xl font-semibold text-gray-900">{title}</h1>
-        {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+    <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="min-w-0">
+        {eyebrow && <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-ws-gold">{eyebrow}</p>}
+        <h1 className="font-display text-[1.7rem] font-semibold leading-tight tracking-tight text-ws-text">{title}</h1>
+        {description && <p className="mt-1.5 max-w-2xl text-sm text-ws-muted">{description}</p>}
       </div>
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
+      {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
     </div>
   )
 }
 
+export function IconTile({ children, tone = 'neutral' }: { children: ReactNode; tone?: 'neutral' | 'gold' }) {
+  return (
+    <span
+      aria-hidden
+      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
+        tone === 'gold'
+          ? 'border-ws-gold/30 bg-ws-gold-soft text-ws-gold'
+          : 'border-ws-line-strong bg-ws-raised text-ws-muted'
+      } [&_svg]:h-4 [&_svg]:w-4`}
+    >
+      {children}
+    </span>
+  )
+}
+
+/** KPI card. `hint` / `footer` must describe real values — never invented comparisons. */
 export function StatCard({
   label,
   value,
   hint,
+  icon,
+  footer,
+  accent = false,
+  loading = false,
 }: {
   label: string
   value: ReactNode
   hint?: string
+  icon?: ReactNode
+  footer?: ReactNode
+  accent?: boolean
+  loading?: boolean
 }) {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white px-5 py-4 shadow-sm">
-      <p className="text-xs font-medium uppercase tracking-wide text-gray-500">{label}</p>
-      <p className="mt-2 text-2xl font-semibold text-gray-900">{value}</p>
-      {hint && <p className="mt-1 text-xs text-gray-500">{hint}</p>}
+    <div
+      className={`ws-card group relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-ws-pop ${
+        accent ? 'border-ws-gold/25' : ''
+      }`}
+    >
+      {accent && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -right-10 -top-12 h-32 w-32 rounded-full bg-ws-gold/20 blur-3xl"
+        />
+      )}
+      <div className="relative px-5 pb-4 pt-4">
+        <header className="flex items-start justify-between gap-3">
+          <p className="text-[13px] font-medium text-ws-muted">{label}</p>
+          {icon && <IconTile tone={accent ? 'gold' : 'neutral'}>{icon}</IconTile>}
+        </header>
+        {loading ? (
+          <div className="skeleton mt-3 h-8 w-28 rounded-lg" />
+        ) : (
+          <p
+            className={`mt-2 font-display font-semibold leading-none tracking-tight text-ws-text tabular-nums ${
+              typeof value === 'string' && value.length > 10 ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-[1.9rem]'
+            }`}
+          >
+            {value}
+          </p>
+        )}
+      </div>
+      {(hint || footer) && (
+        <div className="relative flex items-center justify-between gap-2 border-t border-ws-line px-5 py-2.5 text-xs text-ws-muted">
+          {hint && <span className="truncate">{hint}</span>}
+          {footer}
+        </div>
+      )}
     </div>
   )
+}
+
+export function Skeleton({ className = 'h-4 w-full' }: { className?: string }) {
+  return <div aria-hidden className={`skeleton rounded-md ${className}`} />
 }
 
 export function Table({
@@ -224,22 +289,22 @@ export function Table({
   )
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
-      <table className="min-w-full divide-y divide-gray-200 text-sm">
-        <thead className="bg-gray-50">
-          <tr>
+    <div className="ws-card ws-scroll overflow-x-auto">
+      <table className="min-w-full text-sm [&_tbody_tr]:transition-colors [&_tbody_tr:hover]:bg-ws-raised/50 [&_td]:text-ws-text/90">
+        <thead>
+          <tr className="border-b border-ws-line">
             {headers.map((header, index) => (
               <th
                 key={index}
                 scope="col"
-                className="whitespace-nowrap px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"
+                className="whitespace-nowrap px-4 py-3 text-left text-xs font-medium text-ws-muted"
               >
                 {header}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-100">{children}</tbody>
+        <tbody className="divide-y divide-ws-line">{children}</tbody>
       </table>
       {hasRows ? null : empty}
     </div>
@@ -254,23 +319,41 @@ export function Alert({
   children: ReactNode
 }) {
   const styles = {
-    error: 'border-red-200 bg-red-50 text-red-800',
-    success: 'border-brand-200 bg-brand-50 text-brand-800',
-    info: 'border-blue-200 bg-blue-50 text-blue-800',
+    error: 'border-ws-danger/30 bg-ws-danger-soft text-red-800',
+    success: 'border-ws-success/30 bg-ws-success-soft text-green-800',
+    info: 'border-ws-info/30 bg-ws-info-soft text-blue-800',
   }
   return (
-    <div role={kind === 'error' ? 'alert' : 'status'} className={`rounded-lg border px-4 py-3 text-sm ${styles[kind]}`}>
+    <div role={kind === 'error' ? 'alert' : 'status'} className={`rounded-xl border px-4 py-3 text-sm ${styles[kind]}`}>
       {children}
     </div>
   )
 }
 
-export function Card({ title, children, actions }: { title?: string; children: ReactNode; actions?: ReactNode }) {
+export function Card({
+  title,
+  children,
+  actions,
+  description,
+  icon,
+}: {
+  title?: string
+  children: ReactNode
+  actions?: ReactNode
+  description?: string
+  icon?: ReactNode
+}) {
   return (
-    <section className="rounded-xl border border-gray-200 bg-white shadow-sm">
+    <section className="ws-card">
       {(title || actions) && (
-        <header className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
-          {title && <h2 className="text-sm font-semibold text-gray-900">{title}</h2>}
+        <header className="flex flex-wrap items-start justify-between gap-3 px-5 pb-1 pt-4">
+          <div className="flex min-w-0 items-center gap-3">
+            {icon && <IconTile>{icon}</IconTile>}
+            <div className="min-w-0">
+              {title && <h2 className="text-[15px] font-semibold text-ws-text">{title}</h2>}
+              {description && <p className="mt-0.5 text-xs text-ws-muted">{description}</p>}
+            </div>
+          </div>
           {actions}
         </header>
       )}
@@ -287,14 +370,14 @@ export function Badge({
   children: ReactNode
 }) {
   const tones = {
-    gray: 'bg-gray-100 text-gray-700',
-    green: 'bg-brand-100 text-brand-800',
-    red: 'bg-red-100 text-red-700',
-    amber: 'bg-amber-100 text-amber-800',
-    blue: 'bg-blue-100 text-blue-800',
+    gray: 'border-ws-line-strong bg-ws-raised text-ws-muted',
+    green: 'border-ws-success/25 bg-ws-success-soft text-ws-success',
+    red: 'border-ws-danger/25 bg-ws-danger-soft text-ws-danger',
+    amber: 'border-ws-warning/25 bg-ws-warning-soft text-ws-warning',
+    blue: 'border-ws-info/25 bg-ws-info-soft text-ws-info',
   }
   return (
-    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${tones[tone]}`}>
+    <span className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-medium ${tones[tone]}`}>
       {children}
     </span>
   )
@@ -302,17 +385,17 @@ export function Badge({
 
 export function EmptyState({ title, description }: { title: string; description?: string }) {
   return (
-    <div className="rounded-lg border border-dashed border-gray-300 px-6 py-10 text-center">
-      <p className="text-sm font-medium text-gray-700">{title}</p>
-      {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+    <div className="rounded-2xl border border-dashed border-ws-line-strong bg-ws-sunken/40 px-6 py-10 text-center">
+      <p className="text-sm font-medium text-ws-text">{title}</p>
+      {description && <p className="mx-auto mt-1 max-w-md text-sm text-ws-muted">{description}</p>}
     </div>
   )
 }
 
 export function PageLoader({ label = 'Loading…' }: { label?: string }) {
   return (
-    <div className="flex items-center justify-center gap-3 py-16 text-gray-500" role="status">
-      <Spinner />
+    <div className="flex items-center justify-center gap-3 py-16 text-ws-muted" role="status">
+      <Spinner className="h-5 w-5 text-ws-gold" />
       <span className="text-sm">{label}</span>
     </div>
   )
